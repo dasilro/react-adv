@@ -13,33 +13,16 @@ export const useShoppingCart = () => {
         count: number;
         product: Product;
       }) => {
-        setShoppingCart((oldShoppingCart) => {
-          const productInCart: ProductInCart = oldShoppingCart[product.id] || {
-            ...product,
-            count: 0,
-          };
-    
-          if (Math.max(productInCart.count + count, 0) > 0) {
-            // El count después del incremento es mayor que cero
-            productInCart.count += count;
+        setShoppingCart((oldShoppingCart) => {          
+          if (count > 0) {
             return {
               ...oldShoppingCart,
-              [product.id]: productInCart,
+              [product.id]: { ...product, count },
             };
           } else {
-            // El count después del incremento es cero o menor, eliminar el producto del oldshoppingcart
             delete oldShoppingCart[product.id];
             return { ...oldShoppingCart };
           }
-          // if (count > 0) {
-          //   return {
-          //     ...oldShoppingCart,
-          //     [product.id]: { ...product, count },
-          //   };
-          // } else {
-          //   delete oldShoppingCart[product.id];
-          //   return { ...oldShoppingCart };
-          // }
         });
       };
     
