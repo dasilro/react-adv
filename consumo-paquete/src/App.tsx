@@ -1,31 +1,31 @@
+import "./App.css";
 import {
-  ProductButtons,
   ProductCard,
   ProductImage,
   ProductTitle,
-} from "../components";
-import { products } from "../data/products";
+  ProductButtons,
+} from "dsr-product-card";
 
-const product = products[0];
+const product = {
+  id: "1",
+  title: "Coffe Mug - Card",
+  img: "./coffee-mug.png",
+};
 
-export const ShoppingPage = () => {
-  //const { onProductCountChange, shoppingCart } = useShoppingCart();
-
+function App() {
   return (
-    <div>
-      <h1>ShoppingPage</h1>
-      <hr />
+    <div className="App App-header">
+      <h1>Hola Mundo!</h1>
       <ProductCard
-        key={product.id}
         product={product}
         initialValues={{
           count: 4,
-          //maxCount: 10
+          maxCount: 10,
         }}
       >
         {({ count, isMaxCountReached, increaseBy, reset }) => (
           <>
-            <ProductImage img={product.img} />
+            <ProductImage />
             <ProductTitle />
             <ProductButtons />
           </>
@@ -33,4 +33,6 @@ export const ShoppingPage = () => {
       </ProductCard>
     </div>
   );
-};
+}
+
+export default App;
